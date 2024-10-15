@@ -9,7 +9,7 @@ Widget nombreField(TextEditingController controller, bool isError) {
       labelText: 'Nombre de la Universidad',
       border: OutlineInputBorder(
         borderSide: BorderSide(
-          color: isError ? Colors.red : Colors.blue, // Cambia el color según la validación
+          color: isError ? Colors.red : Colors.blue,
         ),
       ),
       errorText: isError ? 'Este campo es obligatorio' : null,
@@ -25,7 +25,7 @@ Widget siglasField(TextEditingController controller, bool isError) {
       labelText: 'Siglas',
       border: OutlineInputBorder(
         borderSide: BorderSide(
-          color: isError ? Colors.red : Colors.blue, // Cambia el color según la validación
+          color: isError ? Colors.red : Colors.blue,
         ),
       ),
       errorText: isError ? 'Este campo es obligatorio' : null,
@@ -37,7 +37,8 @@ Widget siglasField(TextEditingController controller, bool isError) {
 Widget tipoUniversidadDropdown(String tipo, ValueChanged<String?> onChanged) {
   return DropdownButtonFormField<String>(
     value: tipo,
-    items: <String>['Pública', 'Privada', 'Mixta'].map<DropdownMenuItem<String>>((String value) {
+    items: <String>['Pública', 'Privada', 'Mixta']
+        .map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(
         value: value,
         child: Text(value),
@@ -52,7 +53,8 @@ Widget tipoUniversidadDropdown(String tipo, ValueChanged<String?> onChanged) {
 }
 
 // Widget para el campo de fecha de fundación
-Widget fechaFundacionField(BuildContext context, DateTime fecha, ValueChanged<DateTime> onChanged) {
+Widget fechaFundacionField(
+    BuildContext context, DateTime fecha, ValueChanged<DateTime> onChanged) {
   return TextField(
     readOnly: true,
     decoration: InputDecoration(
@@ -70,7 +72,7 @@ Widget fechaFundacionField(BuildContext context, DateTime fecha, ValueChanged<Da
         onChanged(newDate);
       }
     },
-    controller: TextEditingController(text: "${fecha.toLocal()}".split(' ')[0]), // Formato de fecha
+    controller: TextEditingController(text: "${fecha.toLocal()}".split(' ')[0]),
   );
 }
 
@@ -78,7 +80,8 @@ Widget fechaFundacionField(BuildContext context, DateTime fecha, ValueChanged<Da
 Widget paisDropdown(String pais, ValueChanged<String?> onChanged) {
   return DropdownButtonFormField<String>(
     value: pais,
-    items: <String>['México', 'Colombia', 'Argentina'].map<DropdownMenuItem<String>>((String value) {
+    items: <String>['México', 'Colombia', 'Argentina']
+        .map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(
         value: value,
         child: Text(value),
@@ -100,7 +103,7 @@ Widget ciudadField(TextEditingController controller, bool isError) {
       labelText: 'Ciudad',
       border: OutlineInputBorder(
         borderSide: BorderSide(
-          color: isError ? Colors.red : Colors.blue, // Cambia el color según la validación
+          color: isError ? Colors.red : Colors.blue,
         ),
       ),
       errorText: isError ? 'Este campo es obligatorio' : null,
@@ -116,7 +119,7 @@ Widget direccionField(TextEditingController controller, bool isError) {
       labelText: 'Dirección',
       border: OutlineInputBorder(
         borderSide: BorderSide(
-          color: isError ? Colors.red : Colors.blue, // Cambia el color según la validación
+          color: isError ? Colors.red : Colors.blue,
         ),
       ),
       errorText: isError ? 'Este campo es obligatorio' : null,
@@ -132,10 +135,43 @@ Widget codigoPostalField(TextEditingController controller, bool isError) {
       labelText: 'Código Postal',
       border: OutlineInputBorder(
         borderSide: BorderSide(
-          color: isError ? Colors.red : Colors.blue, // Cambia el color según la validación
+          color: isError ? Colors.red : Colors.blue,
         ),
       ),
       errorText: isError ? 'Este campo es obligatorio' : null,
     ),
   );
+}
+
+// Widget para el campo de redes sociales
+class RedesSocialesField extends StatelessWidget {
+  final TextEditingController controller;
+  final VoidCallback onAdd;
+
+  const RedesSocialesField({
+    Key? key,
+    required this.controller,
+    required this.onAdd,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              labelText: 'Red Social (URL)',
+              border: OutlineInputBorder(),
+            ),
+          ),
+        ),
+        IconButton(
+          icon: Icon(Icons.add), // Ícono de más
+          onPressed: onAdd,
+        ),
+      ],
+    );
+  }
 }

@@ -20,8 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Registro de Universidades',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue, //linea para queitar la marca de agua debug
       ),
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => GeneralInfoScreen(),
